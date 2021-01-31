@@ -4,6 +4,7 @@ import java.util.*;
 
 public class TreeUse {
 	
+	
 	public static TreeNode<Integer> takeInput(Scanner sc){
 		
 		System.out.println("Enter next node data");
@@ -65,10 +66,80 @@ public class TreeUse {
 			System.out.println();
 		}
 	}
+
+	public static int numNodes(TreeNode<Integer> root) {
+		
+		int ans=0;
+		for(int i=0; i<root.children.size(); i++) {
+			ans += numNodes(root.children.get(i));
+		}
+		return ans+1;
+	}
+	
+	public static int largestNode(TreeNode<Integer> root) {
+		
+		int ans = Integer.MIN_VALUE;
+		for(int i=0; i<root.children.size(); i++) {
+			int cm = largestNode(root.children.get(i));
+			ans = Math.max(ans , cm);
+		}
+		return Math.max(ans, root.data);
+	}
+	
+	public static int height(TreeNode<Integer> root) {
+		
+		int ans = 0;
+		for(int i=0; i<root.children.size(); i++) {
+			ans = Math.max(ans, height(root.children.get(i)));
+		}
+		return ans+1;
+	}
+	
+	public static void printAtK(TreeNode<Integer> root, int k) {
+		if(k<0) {
+			return;
+		}
+		
+		if(k==0) {
+			System.out.println(root.data);
+			return;
+		}
+		
+		for(int i=0; i<root.children.size(); i++) {
+			printAtK(root.children.get(i), k-1);
+		}
+	}
+
+	public static int leafCount(TreeNode<Integer> root) {
+		if(root.children.size()==0) {
+			return 1;
+		}
+		
+		int count = 0;
+		for(int i=0; i<root.children.size(); i++) {
+			count += leafCount(root.children.get(i));
+		}
+		return count;
+	}
+	
+	public static void preorder(TreeNode<Integer> root) {
+		
+		System.out.println(root.data);
+		for(int i =0; i<root.children.size(); i++) {
+			preorder(root.children.get(i));
+		}
+	}
 	public static void main(String args[]) {
 		Scanner sc = new Scanner(System.in);
 		TreeNode<Integer> root = takeInput();
 		printLevelWise(root);
+		System.out.println(numNodes(root));
+		System.out.println(largestNode(root));
+		System.out.println(height(root));
+		System.out.println();
+		printAtK(root, 1);
+		System.out.println("leaf count:"+ leafCount(root));
+		preorder(root);
 		
 		
 //		TreeNode<Integer> root = new TreeNode<>(0);
