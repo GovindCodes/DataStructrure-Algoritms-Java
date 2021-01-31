@@ -69,6 +69,10 @@ public class TreeUse {
 
 	public static int numNodes(TreeNode<Integer> root) {
 		
+		if(root==null) {
+			return 0;
+		}
+		
 		int ans=0;
 		for(int i=0; i<root.children.size(); i++) {
 			ans += numNodes(root.children.get(i));
@@ -77,6 +81,10 @@ public class TreeUse {
 	}
 	
 	public static int largestNode(TreeNode<Integer> root) {
+		
+		if(root==null) {
+			return Integer.MIN_VALUE;
+		}
 		
 		int ans = Integer.MIN_VALUE;
 		for(int i=0; i<root.children.size(); i++) {
@@ -87,6 +95,9 @@ public class TreeUse {
 	}
 	
 	public static int height(TreeNode<Integer> root) {
+		if(root==null) {
+			return 0;
+		}
 		
 		int ans = 0;
 		for(int i=0; i<root.children.size(); i++) {
@@ -123,6 +134,9 @@ public class TreeUse {
 	}
 	
 	public static void preorder(TreeNode<Integer> root) {
+		if(root==null) {
+			return;
+		}
 		
 		System.out.println(root.data);
 		for(int i =0; i<root.children.size(); i++) {
