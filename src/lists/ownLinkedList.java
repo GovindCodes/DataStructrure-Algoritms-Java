@@ -15,11 +15,6 @@ public class ownLinkedList {
 
 }
 
-class Node{
-	
-	int data;
-	Node next;
-}
 
 class myLinkedList{
 	
@@ -27,7 +22,7 @@ class myLinkedList{
 	
 	void insert(int data) {
 		
-		Node n = new Node();
+		Node n = new Node(data);
 		n.data= data;
 		n.next= null;      //nhi bhi likenge to bhi chalega readability k liy likhe bss
 		

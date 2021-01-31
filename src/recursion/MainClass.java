@@ -6,11 +6,11 @@ public class MainClass {
 	public static void main(String[] args) {
 		
 //		System.out.println(sum(5));
-		System.out.println(pow(5,10));
-		System.out.println(steps);
-		steps=0;
-		System.out.println(fastPow(5,10));
-		System.out.println(steps);
+		System.out.println(fastpow(5,3));
+//		System.out.println(steps);
+//		steps=0;
+//		System.out.println(fastPow(5,10));
+//		System.out.println(steps);
 		
 //		System.out.println(path(200,2));
 
@@ -23,12 +23,22 @@ public class MainClass {
 			return n + sum(n-1);
 	}
 	
-	
 	static int pow(int a, int b) {
 		steps++;
 		if(b==0)
 			return 1;
 		return a* pow(a, b-1);
+	}
+	
+	static int fastpow(int a, int b) {
+		if(b==0)
+			return 1;
+		else if(b%2==0)
+			return pow(a*a, b/2);
+		else
+			return a*pow(a, b-1);
+		
+		
 	}
 	
 	static int fastPow(int a, int b) {
